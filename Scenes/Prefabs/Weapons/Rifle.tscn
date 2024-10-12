@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://do31pmp1lyylt"]
+
+[ext_resource type="PackedScene" uid="uid://ba6e46nem48ps" path="res://Scenes/Prefabs/HitscanWeapon.tscn" id="1_gsjfv"]
+[ext_resource type="PackedScene" uid="uid://cc2403553hsuo" path="res://Assets/Models/Rifle.glb" id="2_5ivc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64d55"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Curve" id="Curve_ia0ie"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_trs5s"]
+curve = SubResource("Curve_ia0ie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w40l3"]
+direction = Vector3(0, 0, -1)
+spread = 8.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_trs5s")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1el3v"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Rifle" node_paths=PackedStringArray("weapon_mesh", "muzzle_flash") instance=ExtResource("1_gsjfv")]
+fire_rate = 8.0
+recoil = 0.3
+weapon_mesh = NodePath("Mesh")
+weapon_damage = 70
+muzzle_flash = NodePath("MuzzleFlash")
+
+[node name="CooldownTimer" parent="." index="0"]
+one_shot = true
+
+[node name="Mesh" parent="." index="1" instance=ExtResource("2_5ivc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -1.8)
+
+[node name="Part_104" parent="Mesh" index="0"]
+layers = 2
+
+[node name="Gun butt_018" parent="Mesh" index="1"]
+layers = 2
+
+[node name="Part_106" parent="Mesh" index="2"]
+layers = 2
+
+[node name="Grip_027" parent="Mesh" index="3"]
+layers = 2
+
+[node name="Part_108" parent="Mesh" index="4"]
+layers = 2
+
+[node name="Scope_022" parent="Mesh" index="5"]
+layers = 2
+
+[node name="Scope_023" parent="Mesh" index="6"]
+layers = 2
+
+[node name="Extra accessories_008" parent="Mesh" index="7"]
+layers = 2
+
+[node name="Part_112" parent="Mesh" index="8"]
+layers = 2
+
+[node name="Part_113" parent="Mesh" index="9"]
+layers = 2
+
+[node name="Muzzle breaks" parent="Mesh" index="10"]
+layers = 2
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.356294, -3.19836)
+layers = 2
+material_override = SubResource("StandardMaterial3D_64d55")
+cast_shadow = 0
+emitting = false
+lifetime = 0.07
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_w40l3")
+draw_pass_1 = SubResource("BoxMesh_1el3v")
+
+[editable path="Mesh"]

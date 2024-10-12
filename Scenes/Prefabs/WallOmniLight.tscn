@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dj6s75opteqhy"]
+
+[node name="WallOmniLight" type="OmniLight3D"]
+transform = Transform3D(1, 0, 3.59989e-21, 0, 1, -8.35188e-23, 0, -8.35188e-23, 1, 0, -0.2, 0)
+light_color = Color(0.6, 0.933333, 1, 1)
+light_specular = 0.75
+shadow_enabled = true
+omni_attenuation = 0.25

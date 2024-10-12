@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc8154jacopht"]
+
+[ext_resource type="Script" path="res://Scripts/Lava.gd" id="1_4gayi"]
+[ext_resource type="Shader" uid="uid://dutefvyjkr7et" path="res://Assets/Materials & Shaders/Lava.tres" id="1_mkj51"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl20a"]
+render_priority = 0
+shader = ExtResource("1_mkj51")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_22nm6"]
+resource_local_to_scene = true
+size = Vector2(10, 10)
+
+[node name="Lava" type="Area3D"]
+script = ExtResource("1_4gayi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_pl20a")
+mesh = SubResource("PlaneMesh_22nm6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(1, 0.501961, 0, 1)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 10.0
+omni_attenuation = 0.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccyiun1fcdle3"]
+
+[ext_resource type="Shader" path="res://Assets/Materials & Shaders/TempProcCheckers.gdshader" id="1_5r6js"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5r6js")
+shader_parameter/albedo = Color(0.247059, 0.247059, 0.247059, 1)
+shader_parameter/specular = null
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.5
+shader_parameter/point_size = null
